@@ -6,39 +6,100 @@ import Card from '../components/Card.astro';
 
 <Layout title="Welcome to Astro.">
 	<main>
-		<div>
-			<h1 class="text-xxl text-yellow-200">ServerMan</h1>
-			<h2 class="text-xl text-purple-400">You Server CLI Super hero</h2>
-			<p>ServerMan is a CLI tool that helps you to manage your server with ease from your terminal </p>
-			<p>
-				You can have your apps deployed on some of the most popular providers like  Digital Ocean, Netlify, Vercel.
-				Don't worry, we've got you covered!
-			</p>		
-			<p>
-				What else can you ask for? Oh yes it's also open source!
-			</p>
-		</div>
-		<div id="server">
-			
+		<div id="jumbo-intro" class="flex justify-around items-center">
+
+			<div>
+				<h1 class="text-xxl text-yellow-200">ServerMan</h1>
+				<h2 class="text-xl text-purple-400">You Server CLI Super hero</h2>
+				<p>ServerMan is a CLI tool that helps you to manage your server with ease from your terminal </p>
+				<p>
+					You can have your apps deployed on some of the most popular providers like  Digital Ocean, Netlify, Vercel.
+					Don't worry, we've got you covered!
+				</p>		
+				<p>
+					What else can you ask for? Oh yes it's also open source!
+				</p>
+			</div>
+			<div id="server">
+				
+			</div>
 		</div>
 	</main>
 </Layout>
 <script>
-import * as Three from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-const loader = new GLTFLoader();
- const scene = new Three.Scene();
- const camera = new Three.PerspectiveCamera( 75, window.innerWidth / window.innerWidth, 0.1, 1000 );
+ 
+
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import {GUI} from 'dat.gui';
+import { getLeadingCommentRanges } from 'typescript';
+ // Load 3D Scene
+var scene = new THREE.Scene(); 
+
+ // Load Camera Perspektive
+
+ const size = {
+	width : 1024,
+	height : 720
+ }
+var camera = new THREE.PerspectiveCamera( 10, size.width / size.height, 1, 20000 );
+camera.position.set( 100, 5000, 5000 );
+	
+ // Load a Renderer
+var renderer = new THREE.WebGLRenderer({ alpha: false });
+renderer.setClearColor( "#13151a" );
+renderer.setPixelRatio( window.devicePixelRatio );
+renderer.setSize(size.width, size.height);
 const server = document.getElementById('server');
-const renderer = new Three.WebGLRenderer();
-renderer.setSize( window.innerWidth, window.innerHeight );
-server.appendChild( renderer.domElement );
-loader.load('/server/scene.gltf',(gltf)=>{
-	console.log(gltf);
-	scene.add(gltf.scene);
-},undefined, function(err){
-	console.error(err);	
-});
+server.appendChild(renderer.domElement);
+	
+ // Load the Orbitcontroller
+var controls = new OrbitControls( camera, renderer.domElement ); 
+
+			
+ // Load Light
+var ambientLight = new THREE.AmbientLight( 0xcccccc );
+scene.add( ambientLight );
+			
+var directionalLight = new THREE.DirectionalLight( 0xffffff );
+directionalLight.position.set( 0, 1, 1 ).normalize();
+scene.add( directionalLight );
+
+const gui = new GUI();
+const modelFolder = gui.addFolder('Model');
+ // glTf 2.0 Loader
+var loader = new GLTFLoader();
+	loader.load( '/server/scene.gltf', function ( gltf ) {             
+	var object = gltf.scene;				
+	gltf.scene.scale.set( 2, 2, 2 );
+	gltf.scene.rotation.set(6,7,0);
+	gltf.scene.position.set(0,-150,5);			   
+	modelFolder.add(gltf.scene.rotation, 'x', -10, 10);
+	modelFolder.add(gltf.scene.rotation, 'y', -10, 10);
+	modelFolder.add(gltf.scene.rotation, 'z', -10, 10);
+	modelFolder.add(gltf.scene.position, 'x', -100, 100);
+	modelFolder.add(gltf.scene.position, 'y', -100, 100);
+	modelFolder.add(gltf.scene.position, 'z', -100, 100);
+	modelFolder.open();
+	scene.add( gltf.scene );
+	});	 
+const cameraFolder = gui.addFolder('Camera');
+cameraFolder.add(camera.position, 'x', -10000, 10000);
+cameraFolder.add(camera.position, 'y', -10000, 10000);
+cameraFolder.add(camera.position, 'z', -10000, 10000);
+cameraFolder.open();
+function animate() {
+	render();
+	requestAnimationFrame( animate );
+	}
+
+function render() {
+	renderer.render( scene, camera );
+	}
+
+render();
+animate();
 </script>
 <style>
 	main {
