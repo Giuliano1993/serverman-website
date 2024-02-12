@@ -1,4 +1,9 @@
+---
+import Menu from '../components/Menu.astro';
+const { frontmatter } = Astro.props;
+---
 <!doctype html>
+
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
@@ -9,7 +14,11 @@
 		<title></title>
 	</head>
 	<body>
-		<slot />
+		<Menu/>
+		<h1 class="text-4xl text-purple-400 font-bold">{frontmatter.title}</h1>
+		<p>
+			<slot />
+		</p>
 	</body>
 </html>
 <style is:global>
@@ -28,6 +37,9 @@
 		font-family: system-ui, sans-serif;
 		background: #13151a;
 		background-size: 224px;
+	}
+	p{
+		color: white;
 	}
 	code {
 		font-family:
