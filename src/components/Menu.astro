@@ -1,6 +1,33 @@
-<nav>
-    <ul>
-        <li>Home</li>
-        <li>Documentation</li>
+---
+ const currentPath = Astro.url.pathname
+
+const pages = [
+    {
+        name: "Home",
+        path: "/"
+    },
+    {
+        name: "Documentation",
+        path: "/documentation"
+    },
+    {
+        name: "Contributing",
+        path: "/contributing"
+    },
+    {
+        name: "GitHub",
+        path: "https://github.com/Giuliano1993/serverMan"
+    }
+];
+---
+<nav class="flex justify-between px-4 py-4">
+    <h1 class="text-purple-400 text-xl font-bold">
+        <a href="/ "class="">ServerMAN</a>
+    </h1>
+    <ul class="flex content-around text-purple-400 font-medium text-lg gap-5">
+        { pages.map((page) => <li><a class=`${ page.path === currentPath ? "underline decoration-yellow-200 pb-3 underline-offset-8" : "" }` href=`${page.path}`>{page.name}</a></li>)}
     </ul>
 </nav>
+<style>
+
+</style>

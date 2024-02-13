@@ -3,23 +3,21 @@ layout: ../../layouts/DocLayout.astro
 title: Configuration
 ---
 
-# Configuration
+- [Installation](#installation)
 - [Configuration](#configuration)
-  - [Installation](#installation)
-  - [Configuration](#configuration-1)
-    - [Digital Ocean](#digital-ocean)
-      - [doAuthToken](#doauthtoken)
-      - [localKeyFile](#localkeyfile)
-      - [sshKey](#sshkey)
-    - [GitHub](#github)
-      - [GitUser](#gituser)
-      - [GitToken](#gittoken)
-    - [Netlify](#netlify)
-      - [NetlifyUser](#netlifyuser)
-      - [NetlifyToken](#netlifytoken)
-      - [GithubInstallation](#githubinstallation)
-    - [Vercel](#vercel)
-      - [vercelToken](#verceltoken)
+  - [Digital Ocean](#digital-ocean)
+    - [doAuthToken](#doauthtoken)
+    - [localKeyFile](#localkeyfile)
+    - [sshKey](#sshkey)
+  - [GitHub](#github)
+    - [GitUser](#gituser)
+    - [GitToken](#gittoken)
+  - [Netlify](#netlify)
+    - [NetlifyUser](#netlifyuser)
+    - [NetlifyToken](#netlifytoken)
+    - [GithubInstallation](#githubinstallation)
+  - [Vercel](#vercel)
+    - [vercelToken](#verceltoken)
 
 
 
