@@ -16,9 +16,9 @@ const { frontmatter } = Astro.props;
 	<body>
 		<Menu/>
 		<h1 class="text-4xl text-purple-400 font-bold">{frontmatter.title}</h1>
-		<p>
+		<main class="px-7">
 			<slot />
-		</p>
+		</main>
 	</body>
 </html>
 <style is:global>
@@ -51,5 +51,21 @@ const { frontmatter } = Astro.props;
 			Bitstream Vera Sans Mono,
 			Courier New,
 			monospace;
+	}
+	p{
+		@apply text-white;
+	}
+	ul{
+		@apply text-white;
+		list-style:symbols(-) ;
+	} 
+	h3, h4, h5{
+		@apply text-purple-400 text-3xl font-bold my-4;
+	}
+	h4{
+		@apply  text-2xl;
+	}
+	h5{
+		@apply text-xl ;
 	}
 </style>
