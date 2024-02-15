@@ -8,7 +8,7 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description" />
@@ -19,7 +19,9 @@ const { title } = Astro.props;
 	</head>
 	<body>
 		<Menu />
-		<slot />
+		<main class="p-7 mt-10 rounded-md bg-slate-800 border-purple-500">
+			<slot />
+		</main>
 	</body>
 </html>
 <style is:global>

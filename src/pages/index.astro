@@ -6,10 +6,10 @@ import Card from '../components/Card.astro';
 
 <Layout title="Welcome to Astro.">
 	<main>
-		<div id="jumbo-intro" class="flex justify-around items-center">
+		<div id="jumbo-intro" class="flex justify-around items-center h-scree h-screen snap-y">
 
 			<div>
-				<h1 class=" text-6xl font-black text-yellow-200 font-mono">ServerMan</h1>
+				<!-- <h1 class=" text-6xl font-black text-yellow-200 font-mono">ServerMan</h1> -->
 				<h2 class="text-4xl font-bold text-purple-400 text-left">You Server CLI Super hero</h2>
 				<p>ServerMan is a CLI tool that helps you to manage your server with ease from your terminal </p>
 				<p>
@@ -24,7 +24,7 @@ import Card from '../components/Card.astro';
 				
 			</div>
 		</div>
-		<div id="about" class=" my-10">
+		<div id="about" class=" my-10 h-screen snap-y snap-start">
 
 			<div class="flex">
 				<div class=" pr-20 pb-20">
@@ -46,20 +46,23 @@ import Card from '../components/Card.astro';
 		<div>
 
 		</div>
-		<div id="features">
+		<div id="features" class="snap-y snap-start">
 			<h2 class="section_title font-bold">Features</h2>
 			<div class="link-card-grid">
 				<Card
 					title="Easy to use"
 					body="ServerMan is easy to use. A uinque CLI to reach your servers and deploy your repos."
+					order-appear="1"
 				/>
 				<Card
 					title="Cross Platform"
 					body="Just install it and use it. No OS related configs needed."
+					order-appear="2"
 				/>
 				<Card
 					title="Stragithforward"
 					body="Don't overthink your deploys. Just use ServerMan and get your app live in seconds."
+					order-appear="3"
 				/>
 			</div>
 		</div>

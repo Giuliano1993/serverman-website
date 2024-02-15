@@ -4,7 +4,7 @@ const { frontmatter } = Astro.props;
 ---
 <!doctype html>
 
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description" />
@@ -15,8 +15,8 @@ const { frontmatter } = Astro.props;
 	</head>
 	<body>
 		<Menu/>
-		<h1 class="text-4xl text-purple-400 font-bold">{frontmatter.title}</h1>
-		<main class="px-7">
+		<main class="p-7 mt-10 rounded-md bg-slate-800 border-purple-500">
+			<h1 class="text-4xl text-purple-400 font-bold">{frontmatter.title}</h1>
 			<slot />
 		</main>
 	</body>
